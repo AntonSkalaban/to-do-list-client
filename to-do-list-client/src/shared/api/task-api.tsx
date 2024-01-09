@@ -23,11 +23,11 @@ export const taskAPI = createApi({
     getTask: build.query<Task, string>({
       query: (id) => "/task/" + id,
     }),
-    addTask: build.mutation<Task, Task>({
-      query: (task) => ({
+    addTask: build.mutation<Task, string>({
+      query: (title) => ({
         url: `/tasks`,
         method: "POST",
-        body: task,
+        body: { title },
       }),
       invalidatesTags: [{ type: "Task", id: "ALL" }],
     }),
