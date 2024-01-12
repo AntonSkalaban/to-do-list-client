@@ -15,7 +15,7 @@ export const TasksList = () => {
   if (isError || !groupedTasks) return <p>Error...</p>;
 
   return (
-    <Container>
+    <Container disableGutters>
       {Object.keys(groupedTasks).map((status) => {
         return (
           <TasksGroup

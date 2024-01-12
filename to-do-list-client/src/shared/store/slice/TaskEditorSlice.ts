@@ -8,7 +8,7 @@ export const TaskEditorSlice = createSlice({
     addToEditor: (state, { payload }: PayloadAction<Task>) => {
       return (state = payload);
     },
-    updateEditTask: (
+    updateEditableTask: (
       state,
       { payload }: PayloadAction<Record<string, string>>
     ) => {
@@ -17,6 +17,6 @@ export const TaskEditorSlice = createSlice({
   },
 });
 
-export const { addToEditor, updateEditTask } = TaskEditorSlice.actions;
+export const { addToEditor, updateEditableTask } = TaskEditorSlice.actions;
 
 export default TaskEditorSlice.reducer;

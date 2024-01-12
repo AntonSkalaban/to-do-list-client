@@ -1,17 +1,17 @@
 import React from "react";
-import { statuses } from "shared/type/type";
-import { Box, Button, ButtonGroup } from "@mui/material";
 import { useSelector } from "react-redux";
 import { getEditableTask } from "shared/store/selectors";
 import { useAction } from "shared/hooks";
+import { statuses } from "shared/type/type";
+import { Box, Button, ButtonGroup } from "@mui/material";
 
 export const ToggleStatus = () => {
-  const { updateEditTask } = useAction();
+  const { updateEditableTask } = useAction();
 
   const { status: curStatus } = useSelector(getEditableTask);
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    updateEditTask({ status: e.currentTarget.value });
+    updateEditableTask({ status: e.currentTarget.value });
   };
 
   return (

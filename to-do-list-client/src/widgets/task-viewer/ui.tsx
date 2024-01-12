@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { getEditableTask, getIsTaskViewerOpen } from "shared/store/selectors";
-import { Box, Container, Typography, useMediaQuery } from "@mui/material";
 import { TaskEditor } from "entities";
-import { CloseTask } from "features/close-task/ui";
+import { CloseTask } from "features";
+import { Box, Container, Typography, useMediaQuery } from "@mui/material";
 
 export const TaskViewer = () => {
   const matches = useMediaQuery("(min-width:800px)");
@@ -38,7 +38,9 @@ export const TaskViewer = () => {
               <TaskEditor />
             </>
           ) : (
-            <Typography>Open task</Typography>
+            <Typography sx={{ textAlign: "center" }}>
+              Сlick on the task to read and change
+            </Typography>
           )}
         </Container>
       )}

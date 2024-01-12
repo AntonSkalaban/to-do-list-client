@@ -2,14 +2,14 @@ import { bindActionCreators } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import {
   addToEditor,
-  updateEditTask,
+  updateEditableTask,
   openTaskViewer,
   closeTaskViewer,
 } from "shared/store/slice";
 
 const actions = {
   addToEditor,
-  updateEditTask,
+  updateEditableTask,
   openTaskViewer,
   closeTaskViewer,
 };

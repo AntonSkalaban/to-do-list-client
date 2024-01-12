@@ -19,14 +19,14 @@ interface TextEditorProps {
   fieldName: "title" | "description";
 }
 export const TextEditor: React.FC<TextEditorProps> = ({ fieldName }) => {
-  const { updateEditTask } = useAction();
+  const { updateEditableTask } = useAction();
 
   const task = useSelector(getEditableTask);
 
   const isTitleField = fieldName === "title";
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    updateEditTask({ [fieldName]: e.target.value });
+    updateEditableTask({ [fieldName]: e.target.value });
   };
 
   return (
