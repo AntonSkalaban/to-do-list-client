@@ -3,16 +3,14 @@ import { useSelector } from "react-redux";
 import { Delete } from "@mui/icons-material";
 import { taskAPI } from "shared/api";
 import { IconButton } from "@mui/material";
-import { getOpenTaskDetails } from "shared/store/selectors/selector";
+import { getEditableTask } from "shared/store/selectors";
 
 export const DeleteTask = () => {
   const [updateTask] = taskAPI.useUpdateTaskMutation();
 
-  const task = useSelector(getOpenTaskDetails);
+  const { _id } = useSelector(getEditableTask);
 
-  const handleClick = () => {
-    updateTask(task);
-  };
+  const handleClick = () => {};
 
   return (
     <IconButton onClick={handleClick} size="large">

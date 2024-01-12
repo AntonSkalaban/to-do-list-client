@@ -2,9 +2,9 @@ import React from "react";
 import { DeleteTask, TextEditor, ToggleStatus, UpdateTask } from "features";
 import { Box } from "@mui/material";
 
-export const OpenTask = () => {
+export const TaskEditor = () => {
   return (
-    <Box sx={{ height: "calc(100vh - 130px)" }}>
+    <Box sx={{ height: "calc(100vh - 200px)" }}>
       <Box sx={{ height: "100%", overflowY: "scroll" }}>
         <TextEditor fieldName="title" />
         <TextEditor fieldName="description" />

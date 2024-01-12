@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
-import { groupByStatus } from "shared/helpers/groupByStatus";
+import { groupByStatus } from "shared/helpers";
 import { GroupedTasks, Task } from "shared/type/type";
 
 export const taskAPI = createApi({
@@ -24,9 +24,6 @@ export const taskAPI = createApi({
         return true;
       },
     }),
-    // getTask: build.query<Task, string>({
-    //   query: (id) => "/task/" + id,
-    // }),
     addTask: build.mutation<Task, string>({
       query: (title) => ({
         url: `/tasks`,

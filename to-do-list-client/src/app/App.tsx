@@ -1,9 +1,8 @@
 import React from "react";
 import { Container } from "@mui/material";
-import { TasksList } from "widgets/tasks-list";
-import { TasksDetails } from "shared/store";
-import "./App.css";
+import { TasksList, TaskViewer } from "widgets";
 import { AddTask } from "features";
+import "./App.css";
 
 export const App = () => {
   return (
@@ -18,10 +17,9 @@ export const App = () => {
     >
       <Container>
         <AddTask />
-
         <TasksList />
       </Container>
-      <TasksDetails />
+      <TaskViewer />
     </Container>
   );
 };

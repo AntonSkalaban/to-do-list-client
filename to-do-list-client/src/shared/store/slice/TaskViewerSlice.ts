@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const OpenTaskToggleSlice = createSlice({
-  name: "openTaskToggle",
+export const TaskViewerSlice = createSlice({
+  name: "taskViewer",
   initialState: { isOpen: false },
   reducers: {
     openTaskViewer: (state) => {
@@ -13,6 +13,6 @@ export const OpenTaskToggleSlice = createSlice({
   },
 });
 
-export const { openTaskViewer, closeTaskViewer } = OpenTaskToggleSlice.actions;
+export const { openTaskViewer, closeTaskViewer } = TaskViewerSlice.actions;
 
-export default OpenTaskToggleSlice.reducer;
+export default TaskViewerSlice.reducer;

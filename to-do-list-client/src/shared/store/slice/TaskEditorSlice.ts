@@ -1,14 +1,14 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { Task } from "shared/type/type";
 
-export const OpenTaskDetailsSlice = createSlice({
-  name: "openTaskDetails",
+export const TaskEditorSlice = createSlice({
+  name: "taskEditor",
   initialState: {} as Task,
   reducers: {
-    saveOpenTask: (state, { payload }: PayloadAction<Task>) => {
+    addToEditor: (state, { payload }: PayloadAction<Task>) => {
       return (state = payload);
     },
-    updateOpenTaskDetails: (
+    updateEditTask: (
       state,
       { payload }: PayloadAction<Record<string, string>>
     ) => {
@@ -17,7 +17,6 @@ export const OpenTaskDetailsSlice = createSlice({
   },
 });
 
-export const { saveOpenTask, updateOpenTaskDetails } =
-  OpenTaskDetailsSlice.actions;
+export const { addToEditor, updateEditTask } = TaskEditorSlice.actions;
 
-export default OpenTaskDetailsSlice.reducer;
+export default TaskEditorSlice.reducer;

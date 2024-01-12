@@ -1,4 +1,4 @@
-export { default as OpenTaskDetailsSlice } from "./slice";
-export * from "./slice";
-export { default as OpenTaskToggleSlice } from "./slice2";
-export * from "./slice2";
+export { default as TaskEditorSlice } from "./TaskEditorSlice";
+export { default as TaskViewerSlice } from "./TaskViewerSlice";
+export * from "./TaskViewerSlice";
+export * from "./TaskEditorSlice";

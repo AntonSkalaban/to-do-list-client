@@ -1,1 +1,2 @@
-export * from "./open-task/ui";
+export * from "./task-row/ui";
+export * from "./task-editor/ui";

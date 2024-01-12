@@ -1,12 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { taskAPI } from "shared/api";
-import { OpenTaskDetailsSlice } from "./slice";
-import { OpenTaskToggleSlice } from "./slice";
+import { TaskEditorSlice, TaskViewerSlice } from "./slice";
 
 export const store = configureStore({
   reducer: {
-    openTaskDetails: OpenTaskDetailsSlice,
-    openTaskToggle: OpenTaskToggleSlice,
+    taskEditor: TaskEditorSlice,
+    taskViewer: TaskViewerSlice,
     [taskAPI.reducerPath]: taskAPI.reducer,
   },
   middleware: (getDefaultMiddleware) => {

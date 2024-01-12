@@ -1,7 +1,7 @@
 import React from "react";
-import { TasksRow } from "entities/task-row/ui";
-import { Container, List, Typography } from "@mui/material";
 import { Task, TaskStatus } from "shared/type/type";
+import { TasksRow } from "entities";
+import { Container, List, Typography } from "@mui/material";
 
 interface TasksGroupProps {
   status: TaskStatus;

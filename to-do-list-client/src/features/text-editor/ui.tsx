@@ -1,8 +1,8 @@
 import React from "react";
 import { TextField, styled } from "@mui/material";
-import { updateOpenTaskDetails } from "shared/store/slice";
-import { useDispatch, useSelector } from "react-redux";
-import { getOpenTaskDetails } from "shared/store/selectors/selector";
+import { useSelector } from "react-redux";
+import { useAction } from "shared/hooks";
+import { getEditableTask } from "shared/store/selectors";
 
 const CustomTextField = styled(TextField)({
   width: "100%",
@@ -19,14 +19,14 @@ interface TextEditorProps {
   fieldName: "title" | "description";
 }
 export const TextEditor: React.FC<TextEditorProps> = ({ fieldName }) => {
-  const dispatch = useDispatch();
+  const { updateEditTask } = useAction();
 
-  const task = useSelector(getOpenTaskDetails);
+  const task = useSelector(getEditableTask);
 
   const isTitleField = fieldName === "title";
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    dispatch(updateOpenTaskDetails({ [fieldName]: e.target.value }));
+    updateEditTask({ [fieldName]: e.target.value });
   };
 
   return (
