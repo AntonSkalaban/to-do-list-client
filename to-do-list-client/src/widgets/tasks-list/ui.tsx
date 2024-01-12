@@ -1,23 +1,30 @@
 import React from "react";
 import { taskAPI } from "shared/api";
-import { TasksRow } from "entities/task-row/ui";
-import { AddTask } from "features/add-task/ui";
-import { Container, List } from "@mui/material";
+import { Container } from "@mui/material";
+import { TaskStatus } from "shared/type/type";
+import { TasksGroup } from "widgets/task-group/task-group";
 
 export const TasksList = () => {
-  const { data: tasks, isError, isFetching } = taskAPI.useGetTasksQuery();
+  const {
+    data: groupedTasks,
+    isError,
+    isFetching,
+  } = taskAPI.useGetTasksQuery();
 
   if (isFetching) return <p>Loading...</p>;
-  if (isError) return <p>Error...</p>;
+  if (isError || !groupedTasks) return <p>Error...</p>;
 
   return (
     <Container>
-      <AddTask />
-      <List sx={{ width: "100%", bgcolor: "background.paper" }}>
-        {tasks?.map((task) => {
-          return <TasksRow key={task._id} task={task} />;
-        })}
-      </List>
+      {Object.keys(groupedTasks).map((status) => {
+        return (
+          <TasksGroup
+            key={status}
+            status={status as TaskStatus}
+            tasks={groupedTasks[status]}
+          />
+        );
+      })}
     </Container>
   );
 };

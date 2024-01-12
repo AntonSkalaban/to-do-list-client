@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
-import { Task } from "shared/type/type";
+import { groupByStatus } from "shared/helpers/groupByStatus";
+import { GroupedTasks, Task } from "shared/type/type";
 
 export const taskAPI = createApi({
   reducerPath: "taskApi",
@@ -8,11 +9,14 @@ export const taskAPI = createApi({
   }),
   tagTypes: ["Task"],
   endpoints: (build) => ({
-    getTasks: build.query<Task[], void>({
+    getTasks: build.query<GroupedTasks, void>({
       query: () => {
         return {
           url: `/tasks`,
         };
+      },
+      transformResponse: (response: Task[]) => {
+        return groupByStatus(response);
       },
       providesTags: () => [{ type: "Task", id: "ALL" }],
 
@@ -20,9 +24,9 @@ export const taskAPI = createApi({
         return true;
       },
     }),
-    getTask: build.query<Task, string>({
-      query: (id) => "/task/" + id,
-    }),
+    // getTask: build.query<Task, string>({
+    //   query: (id) => "/task/" + id,
+    // }),
     addTask: build.mutation<Task, string>({
       query: (title) => ({
         url: `/tasks`,

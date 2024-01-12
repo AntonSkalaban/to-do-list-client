@@ -1,37 +1,50 @@
 import React from "react";
-import { taskAPI } from "shared/api";
-import { Task, TaskStatus, statuses } from "shared/type/type";
-import { MenuItem, Select } from "@mui/material";
+import { statuses } from "shared/type/type";
+import { Box, Button, ButtonGroup } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { updateOpenTaskDetails } from "shared/store/slice";
+import { getOpenTaskDetails } from "shared/store/selectors/selector";
 
-interface ToggleStatusProps {
-  task: Task;
-}
+export const ToggleStatus = () => {
+  const dispatch = useDispatch();
 
-export const ToggleStatus: React.FC<ToggleStatusProps> = ({ task }) => {
-  const [updateTask] = taskAPI.useUpdateTaskMutation();
+  const { status: curStatus } = useSelector(getOpenTaskDetails);
 
-  const hanldeClick = (task: Task, status: TaskStatus) => {
-    updateTask({ ...task, status });
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    dispatch(updateOpenTaskDetails({ status: e.currentTarget.value }));
   };
 
   return (
-    <Select
-      value={task.status}
-      label="status"
-      size="small"
-      style={{ fontSize: "14px", height: "22px" }}
+    <Box
+      sx={{
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+        marginBottom: "15px",
+      }}
     >
-      {statuses.map((status) => {
-        return (
-          <MenuItem
-            key={status}
-            value={status}
-            onClick={() => hanldeClick(task, status)}
-          >
-            {status}
-          </MenuItem>
-        );
-      })}
-    </Select>
+      <ButtonGroup
+        size="small"
+        aria-label="small button group"
+        sx={{ width: "100%" }}
+      >
+        {statuses.map((status) => {
+          return (
+            <Button
+              key={status}
+              value={status}
+              sx={{
+                width: "33%",
+                borderColor: "gray",
+                color: status === curStatus ? "green" : "gray",
+              }}
+              onClick={handleClick}
+            >
+              {status}
+            </Button>
+          );
+        })}
+      </ButtonGroup>
+    </Box>
   );
 };

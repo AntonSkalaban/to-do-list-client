@@ -1,3 +1,7 @@
+export const statuses = ["done", "pending", "in progress"] as const;
+
+export type TaskStatus = (typeof statuses)[number];
+
 export interface Task {
   _id: string;
   title: string;
@@ -5,6 +9,6 @@ export interface Task {
   status: "done" | "in progress" | "pending";
 }
 
-export const statuses = ["done", "pending", "in progress"] as const;
-
-export type TaskStatus = (typeof statuses)[number];
+export interface GroupedTasks {
+  [key: string]: Task[];
+}

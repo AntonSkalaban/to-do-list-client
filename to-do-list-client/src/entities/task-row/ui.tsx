@@ -1,27 +1,31 @@
 import React from "react";
-import { ListItem, ListItemText, IconButton } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
 import { Task } from "shared/type/type";
-import { ToggleStatus } from "features/toggle-status";
+import { ListItem, ListItemText } from "@mui/material";
+
+import { useDispatch, useSelector } from "react-redux";
+import { openTaskViewer, saveOpenTask } from "shared/store/slice";
+import { getOpenTaskDetails } from "shared/store/selectors/selector";
 
 interface TasksRowProps {
   task: Task;
 }
 export const TasksRow: React.FC<TasksRowProps> = ({ task }) => {
+  const openTask = useSelector(getOpenTaskDetails);
+  const dispatch = useDispatch();
+
   return (
     <ListItem
       key={task._id}
       sx={{
-        backgroundColor: task.status === "done" ? "#11bf6a" : "#f5f5f5",
+        backgroundColor:
+          task._id === openTask._id ? "rgba(181, 199, 253, 0.1)" : "#fff",
+      }}
+      onClick={() => {
+        dispatch(saveOpenTask(task));
+        dispatch(openTaskViewer());
       }}
     >
       <ListItemText primary={task.title} />
-
-      <ToggleStatus task={task} />
-
-      <IconButton edge="end" aria-label="comments">
-        <EditIcon />
-      </IconButton>
     </ListItem>
   );
 };
