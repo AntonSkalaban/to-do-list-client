@@ -6,11 +6,13 @@ import { IconButton } from "@mui/material";
 import { getEditableTask } from "shared/store/selectors";
 
 export const DeleteTask = () => {
-  const [updateTask] = taskAPI.useUpdateTaskMutation();
+  const [deleteTask] = taskAPI.useDeleteTaskMutation();
 
-  const { _id } = useSelector(getEditableTask);
+  const { _id: id } = useSelector(getEditableTask);
 
-  const handleClick = () => {};
+  const handleClick = () => {
+    deleteTask(id);
+  };
 
   return (
     <IconButton onClick={handleClick} size="large">
